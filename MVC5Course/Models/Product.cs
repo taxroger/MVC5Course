@@ -11,6 +11,7 @@ namespace MVC5Course.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Product
@@ -23,6 +24,7 @@ namespace MVC5Course.Models
     
         public int ProductId { get; set; }
         [Required(ErrorMessage ="請輸入欄位值({0})!")]
+        [DisplayName("產品名稱")]
         public string ProductName { get; set; }
         [Required]
         [Range(10, 99999, ErrorMessage ="金額設定錯誤!")]
