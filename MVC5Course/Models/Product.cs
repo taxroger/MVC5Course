@@ -21,13 +21,14 @@ namespace MVC5Course.Models
         {
             this.OrderLine = new HashSet<OrderLine>();
         }
-    
+
         public int ProductId { get; set; }
-        [Required(ErrorMessage ="請輸入欄位值({0})!")]
+        [Required(ErrorMessage = "請輸入欄位值({0})!")]
         [DisplayName("產品名稱")]
         public string ProductName { get; set; }
         [Required]
-        [Range(10, 99999, ErrorMessage ="金額設定錯誤!")]
+        [Range(10, 99999, ErrorMessage = "金額設定錯誤!")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
