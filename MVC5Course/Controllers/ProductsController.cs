@@ -35,6 +35,8 @@ namespace MVC5Course.Controllers
             }
 
             ViewBag.keyword = keyword;
+            ViewBag.sortBy = sortBy;
+            ViewBag.pageNo = pageNo;
 
             return View(data.ToPagedList(pageNo, 10));
         }
