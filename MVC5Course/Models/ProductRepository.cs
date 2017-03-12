@@ -10,7 +10,12 @@ namespace MVC5Course.Models
         {
             return this.All().FirstOrDefault(p => p.ProductId == id);
         }
-	}
+
+        public override IQueryable<Product> All()
+        {
+            return base.All().Where(p => p.Stock < 500);
+        }
+    }
 
 	public  interface IProductRepository : IRepository<Product>
 	{
