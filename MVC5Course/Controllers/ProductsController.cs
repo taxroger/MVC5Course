@@ -153,7 +153,14 @@ namespace MVC5Course.Controllers
         [HttpPost]
         public ActionResult login(loginVM login)
         {
-            return Content(login.username + ":" + login.password);
+            if (ModelState.IsValid)
+            {
+                return Content("login succeed!");
+            }
+            else
+            {
+                return Content("login failed!");
+            }
         }
     }
 }
