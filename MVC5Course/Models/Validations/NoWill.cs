@@ -15,9 +15,9 @@ namespace MVC5Course.Models.Validations
 
         public override bool IsValid(object value)
         {
-            string str = Convert.ToString(value);
-
-            if (str.Contains("Will"))
+            string str = Convert.ToString(value).ToUpper();
+            
+            if (str.Contains("WILL"))
             {
                 return false;
             }
