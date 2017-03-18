@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace MVC5Course.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -34,21 +34,30 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(loginVM login, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 FormsAuthentication.RedirectFromLoginPage(login.username, false);
 
-                if (returnUrl.StartsWith("/") && !string.IsNullOrEmpty(returnUrl))
+                if (!string.IsNullOrEmpty(returnUrl))
                 {
-                    return Redirect(returnUrl);
+                    if (returnUrl.StartsWith("/"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
@@ -60,6 +69,7 @@ namespace MVC5Course.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
