@@ -42,11 +42,13 @@ namespace MVC5Course.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(loginVM login, string returnUrl)
+        public ActionResult Login(loginVM login, string returnUrl = "")
         {
             if (ModelState.IsValid)
             {
                 FormsAuthentication.RedirectFromLoginPage(login.username, false);
+
+                TempData["loginModel"] = login;
 
                 if (!string.IsNullOrEmpty(returnUrl))
                 {
