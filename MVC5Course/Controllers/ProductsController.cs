@@ -11,6 +11,7 @@ using PagedList;
 
 namespace MVC5Course.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         //private FabricsEntities db = new FabricsEntities();
@@ -160,22 +161,22 @@ namespace MVC5Course.Controllers
         //    base.Dispose(disposing);
         //}
 
-        public ActionResult login()
-        {
-            return View();
-        }
+        //public ActionResult login()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult login(loginVM login)
-        {
-            if (ModelState.IsValid)
-            {
-                return Content("login succeed!");
-            }
-            else
-            {
-                return Content("login failed!");
-            }
-        }
+        //[HttpPost]
+        //public ActionResult login(loginVM login)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        return Content("login succeed!");
+        //    }
+        //    else
+        //    {
+        //        return Content("login failed!");
+        //    }
+        //}
     }
 }
