@@ -189,6 +189,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MetroController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RTController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -418,6 +419,9 @@
     <Content Include="Views\RT\RazorTest.cshtml" />
     <Content Include="Views\Home\TestLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.Metro.cshtml" />
+    <Content Include="Views\Metro\Index.cshtml" />
+    <Content Include="Views\Metro\_Layout.Form.cshtml" />
+    <Content Include="Views\Metro\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
