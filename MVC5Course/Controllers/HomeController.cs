@@ -15,8 +15,13 @@ namespace MVC5Course.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(string ex = "")
         {
+            if (ex == "err")
+            {
+                throw new IndexOutOfRangeException("error occured");
+            }
+
             ViewBag.Message = "Your application description page!!!";
 
             return View();

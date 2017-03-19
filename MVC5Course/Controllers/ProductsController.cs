@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using MVC5Course.Models;
 using PagedList;
+using System.Data.Entity.Validation;
 
 namespace MVC5Course.Controllers
 {
     [Authorize]
+    [HandleError(View = "error_DbEntityValidationException", ExceptionType = typeof(DbEntityValidationException))]
     public class ProductsController : BaseController
     {
         //private FabricsEntities db = new FabricsEntities();
@@ -144,16 +146,32 @@ namespace MVC5Course.Controllers
         {
             var product = repoProduct.find(id);
             
-            if (TryUpdateModel(product, new string[] { "ProductName", "Stock"}))
+            //if (TryUpdateModel(product, new string[] { "ProductName", "Stock"}))
+            //{
+            //    //var db = repo.UnitOfWork.Context;
+            //    //db.Entry(product).State = EntityState.Modified;
+            //    //db.SaveChanges();
+            //    repoProduct.UnitOfWork.Commit();
+
+            //    return RedirectToAction("Index");
+            //}
+            //return View(product);
+
+
+            if (TryUpdateModel(product, new string[] { "ProductName", "Stock" }))
             {
                 //var db = repo.UnitOfWork.Context;
                 //db.Entry(product).State = EntityState.Modified;
                 //db.SaveChanges();
-                repoProduct.UnitOfWork.Commit();
+                //repoProduct.UnitOfWork.Commit();
 
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
-            return View(product);
+            repoProduct.UnitOfWork.Commit();
+
+            return RedirectToAction("Index");
+
+            //return View(product);
         }
 
         // GET: Products/Delete/5
