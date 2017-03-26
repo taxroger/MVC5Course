@@ -21,15 +21,19 @@ namespace MVC5Course.Controllers
         ProductRepository repo = RepositoryHelper.GetProductRepository(); 
 
         // GET: Products
-        public ActionResult Index(string sortBy, string keyword, int pageNo = 1)
+        public ActionResult Index(string filterActive, string sortBy, string keyword, int pageNo = 1)
         {
+            var filterAction = repoProduct.All().Select(p => p.Active.HasValue ? p.Active.Value.ToString() : "False").Distinct().ToList();
+            //var filterAction = repoProduct.All().Select(p => p.Active).Distinct()
+            ViewBag.filterActive = new SelectList(filterAction);
+
             doSearchOnIndex(sortBy, keyword, pageNo);
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Product[] data, string sortBy, string keyword, int pageNo = 1)
+        public ActionResult Index(string filterActive, Product[] data, string sortBy, string keyword, int pageNo = 1)
         {
             if (ModelState.IsValid)
             {
@@ -47,6 +51,9 @@ namespace MVC5Course.Controllers
 
                 return RedirectToAction("Index");
             }
+            var filterAction = repoProduct.All().Select(p => p.Active.HasValue ? p.Active.Value.ToString() : "False").Distinct();
+            //var filterAction = repoProduct.All().Select(p => p.Active).Distinct()
+            ViewBag.filterActive = new SelectList(filterAction);
 
             doSearchOnIndex(sortBy, keyword, pageNo);
 
@@ -170,7 +177,7 @@ namespace MVC5Course.Controllers
             //return View(product);
 
 
-            if (TryUpdateModel(product, new string[] { "ProductName", "Stock" }))
+            if (TryUpdateModel(product, new string[] { "ProductName", "Stock", "Active" }))
             {
                 //var db = repo.UnitOfWork.Context;
                 //db.Entry(product).State = EntityState.Modified;

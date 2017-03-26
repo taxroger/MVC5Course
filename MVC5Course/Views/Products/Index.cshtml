@@ -11,6 +11,7 @@
 </p>
 
 <form>
+    @Html.DropDownList("filterActive", "請輸入")
     @Html.TextBox("keyword")
     <input type="submit" value="搜尋" />
 </form>
@@ -55,6 +56,10 @@
                 <td>
                     @Html.EditorFor(modelItem => data[i].ProductName)
                     @Html.ValidationMessageFor(modelItem => data[i].ProductName, "", new { @class = "text-danger" })
+
+                    <script>
+                        $('#@Html.IdFor(modelItem => data[i].ProductName)')
+                    </script>
                 </td>
                 <td class="@(data[i].Price >= 100 ? "text-danger" : "")">
                     @Html.EditorFor(modelItem => data[i].Price)
