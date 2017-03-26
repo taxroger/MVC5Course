@@ -93,6 +93,18 @@ namespace MVC5Course.Controllers
             return View(product);
         }
 
+        public ActionResult ProductOrderLines(int id)
+        {
+            Product product = repoProduct.find(id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product.OrderLine);
+        }
+
         // GET: Products/Create
         public ActionResult Create()
         {
